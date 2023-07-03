@@ -248,6 +248,63 @@ container1.append(card)
                 }); 
 
         }
+        function getTopRatedM() {
+            container1.innerHTML = ``
+            let header=document.createElement('h4')
+                header.className="header"
+                header.innerHTML=`<i class="fa fa-star" aria-hidden="true"></i> Top Rated Movies`
+                header.style=`color:yellow;margin-bottom:2rem;`
+                container1.appendChild(header)
+            fetch('https://api.themoviedb.org/3/movie/top_rated?api_key=5f113895e79024963435d4b2ff3eb28e')
+            .then((response) => response.json()).then((response) =>{
+            arr = response;
+            console.log(arr)
+            
+            for (let i = 0; i < 1000; i++) {
+
+let card = document.createElement('div')
+
+card.style = 'style="width: 16rem;opacity:70%';
+
+card.setAttribute('class', 'col-lg-2 col-md-2 col-sm-2 m-2  card bg-dark text-light')
+
+let img = document.createElement('img')
+
+img.classList.add('card-img-top')
+
+let title = document.createElement('h5')
+
+title.setAttribute('class', 'card-title')
+title.classList.add('text-center')
+
+title.textContent = arr.results[i].title
+
+img.src = `https://image.tmdb.org/t/p/w500/${arr.results[i].poster_path}`
+img.style='height:12rem;'
+
+
+
+let description = document.createElement('h6')
+    description.setAttribute('class', 'card-text text-light')
+    description.innerHTML=`<i class="bi bi-star"></i> ${arr.results[i].vote_average} &ensp; <i class="fa fa-globe" aria-hidden="true"></i>  ${arr.results[i].original_language }`
+    description.style="font-size:13px;text-align:center;"
+
+    let cardbody=document.createElement('div')
+    cardbody.classList.add('card-body')
+
+    
+    card.appendChild(img)
+card.appendChild(title)
+card.appendChild(cardbody)
+cardbody.appendChild(description)
+container1.append(card)
+
+}
+            }).catch((error) => {
+                    console.log('Error:', error);
+                }); 
+
+        }
   
         
         

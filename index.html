@@ -38,8 +38,14 @@
           <li class="nav-item">
             <a class="nav-link text-dark" href="javascript:getHighestGrossing();">Highest Grossing</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" href="javascript:getTopRated();">Top Rated</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Top Rated
+            </a>
+            <ul class="dropdown-menu">
+             <li> <a class="dropdown-item text-dark" href="javascript:getTopRatedM();">Movies</a></li>
+             <li> <a class="dropdown-item text-dark" href="javascript:getTopRated();">Tv Shows</a></li>
+            </ul>
           </li>
         </ul>
         <form class="d-flex" role="search">
@@ -80,7 +86,7 @@
     
 
 
-  <script src="movie.js"> </script>
+  
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
@@ -92,6 +98,7 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"></script>
+  <script src="movie.js"> </script>
   
   
 
