@@ -28,7 +28,15 @@ input:-webkit-autofill {
     -webkit-text-fill-color: black !important;
     }
 
-
+    .custom-popover {
+        --bs-popover-max-width: 200px;
+        --bs-popover-border-color: var(--bs-warning);
+        --bs-popover-header-bg: var(--bs-warning);
+        --bs-popover-header-color: var(--bs-dark);
+        --bs-popover-body-color: var(--bs-dark);
+        --bs-popover-body-padding-x: 1rem;
+        --bs-popover-body-padding-y: .5rem;
+      }
 .navbar-brand{
     font-size: 40px;
     font-weight: 600;
