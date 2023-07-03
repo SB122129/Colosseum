@@ -386,8 +386,15 @@ container1.append(card)
     
     const json = await response.json();
 
-    const searchList = json.results;
+
     console.log(json)
+    if(json.Error=="Movie not found!"){
+        container1.innerHTML=`
+        <p style='color:red;font-size:30px;text-align:center;'><i class="bi bi-emoji-frown"></i> Sorry Movie not found!</p>
+        <p style='color:red;font-size:18px;text-align:center;'><i class="bi bi-dot"></i>Try making sure there is no whitespace at the end of your query</p>
+        <p style='color:red;font-size:18px;text-align:center;'><i class="bi bi-dot"></i>Check the spelling of your query</p>`
+        return
+    }
 
    for (let i = 0; i < json.Search.length; i++) {
         const movie = json.Search[i];
