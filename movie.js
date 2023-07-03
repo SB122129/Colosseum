@@ -2,7 +2,7 @@
         let searchbtn = document.getElementById('searchbtn')
         window.addEventListener("DOMContentLoaded", getTrendingmovies)
         let trademark=document.createElement('p')
-        trademark.style="text-align: center;color:black;font-size:22px;margin:2rem;font-weight:600;"
+        trademark.style="text-align: center;color:black;font-size:20px;margin:2rem;font-weight:600;"
         trademark.innerHTML=`Made by <i class="fa fa-copyright" aria-hidden="true"></i>SB122129`
         
         function getHighestGrossing() {
@@ -248,7 +248,7 @@ container1.append(card)
                 }); 
 
         }
-        function getTopRatedM() {
+        function getTopRatedM () {
             container1.innerHTML = ``
             let header=document.createElement('h4')
                 header.className="header"
