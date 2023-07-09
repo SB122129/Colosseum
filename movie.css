@@ -59,5 +59,12 @@ input:-webkit-autofill {
      padding-left: 1px;
      height: 22rem;
     }
+    #moviesList{
+        padding-left: 5rem;
+    }
+    #loading{
+        padding-left: 50%;
+        padding-bottom: 5rem;
+    }
 
 
