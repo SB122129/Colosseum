@@ -52,7 +52,7 @@
             detail.classList.add('btn');
             detail.type='button';
             detail.value='More';
-            detail.style='width:5rem;background:#FFC107;padding: 0 1rem;margin-left:34%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
+            detail.style='width:5rem;background:#FFC107;padding: 0 1rem;margin-left:29%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
             detail.setAttribute('data-bs-title','Overview'); 
             detail.setAttribute('data-bs-custom-class','custom-popover')
             detail.setAttribute('data-bs-trigger','focus');
@@ -123,7 +123,7 @@
                 detail.classList.add('btn');
                 detail.type='button';
                 detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin-left: 33%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
+                detail.style='width:5rem;background:#FFC107;margin-left: 29%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
                 detail.setAttribute('data-bs-title','Overview') ;
                 detail.setAttribute('data-bs-custom-class','custom-popover');
                 detail.setAttribute('data-bs-trigger','focus');
@@ -196,7 +196,7 @@
                 detail.classList.add('btn');
                 detail.type='button';
                 detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin-left:34%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:10px;margin-top:0.5em;';
+                detail.style='width:5rem;background:#FFC107;margin-left:29%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:10px;margin-top:0.5em;';
                 detail.setAttribute('data-bs-title','Overview');
                 detail.setAttribute('data-bs-custom-class','custom-popover');
                 detail.setAttribute('data-bs-trigger','focus');
@@ -263,7 +263,7 @@
                 detail.classList.add('btn');
                 detail.type='button';
                 detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin-left: 33%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
+                detail.style='width:5rem;background:#FFC107;margin-left: 29%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
                 detail.setAttribute('data-bs-title','Overview');
                 detail.setAttribute('data-bs-custom-class','custom-popover');
                 detail.setAttribute('data-bs-trigger','focus');
@@ -330,7 +330,7 @@
                 detail.classList.add('btn');
                 detail.type='button';
                 detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin-left: 33%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
+                detail.style='width:5rem;background:#FFC107;margin-left: 29%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
                 detail.setAttribute('data-bs-title','Overview') ;
                 detail.setAttribute('data-bs-custom-class','custom-popover');
                 detail.setAttribute('data-bs-trigger','focus');
@@ -401,7 +401,7 @@
                 detail.classList.add('btn');
                 detail.type='button';
                 detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin-left:30%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
+                detail.style='width:5rem;background:#FFC107;margin-left:29%; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;margin-top:0.5em;';
                 detail.setAttribute('data-bs-title','Details') ;
                 detail.setAttribute('data-bs-custom-class','custom-popover');
                 detail.setAttribute('data-bs-trigger','focus');
