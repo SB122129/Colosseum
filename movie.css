@@ -5,6 +5,24 @@ body{
 main{
     background-color: black;
 }
+::-webkit-scrollbar {
+    width: 8px;
+  }
+
+::-webkit-scrollbar-track {
+    background: #000000; 
+  }
+   
+::-webkit-scrollbar-thumb {
+    background: #efdb02; 
+    border-radius: 12px;
+    border-color: black ;
+  }
+  
+::-webkit-scrollbar-thumb:hover {
+    background: #efdb02; 
+  }
+
 .form-control, .form-control:focus {
     padding: .5em;
     display: inline-block;
