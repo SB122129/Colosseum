@@ -6,14 +6,16 @@
     pagination.innerHTML=`
         <nav aria-label="Page">
             <ul class="pagination pagination-md justify-content-center">
-                <li class="page-item" ><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage1()">1</a></li>
+                <li class="page-item" id='pagePre'><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePagePrev()">Previous</a></li>    
+                <li class="page-item disabled" ><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage1()">1</a></li>
                 <li class="page-item"><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage2()">2</a></li>
                 <li class="page-item"><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage3()">3</a></li>
                 <li class="page-item"><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage4()">4</a></li>
                 <li class="page-item"><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage5()">5</a></li>
+                <li class="page-item" id='pagNext'><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePageNext()">Next</a></li>        
             </ul>
         </nav>
-        <br><br>`;
+        <br><br>`
         //code a above is for creating a bootstrap pagination, it can be found on their website.
   
     let page=1;//i'm going to use this value to change page number of the data fetched
@@ -22,7 +24,7 @@
     window.addEventListener("DOMContentLoaded", getTrendingmovies);//event listener that executes the function that fetches trending movies automatically when the page is loaded
     
     let trademark=document.createElement('p');
-    trademark.style="text-align: left;color:black;font-size:15px;margin:1rem;font-weight:600;";
+    trademark.style="text-align: center;color:black;font-size:15px;margin:1rem;font-weight:600;";
     trademark.innerHTML=`Made by <i class="fa fa-copyright" aria-hidden="true"></i>SB122129`;//trademark footnote
         
     function getHighestGrossing() {
@@ -542,8 +544,61 @@
        searchbtn.onclick = search;
    
   
+    function changePagePrev(){
+            if(page>1){
+                --page;
+            if(functionId==1){
+                getTrendingmovies();
+            }
+            else if(functionId==2){
+                getHighestGrossing();
+            }
+            else if(functionId==3){
+                getMovies();
+            }
+            else if(functionId==4){
+                getTopRated();
+            }
+            else if(functionId==5){
+                getTopRatedM();
+            }
+            else if(functionId==6){
+                getShows();
+            }
+            else if(functionId==7){
+                search();
+            }
+        };
+    };
+    function changePageNext(){
+            if(page<5 && page>0){
+                ++page;
+                if(functionId==1){
+                getTrendingmovies();
+                }
+                else if(functionId==2){
+                getHighestGrossing();
+                }
+                else if(functionId==3){
+                    getMovies();
+                }
+                else if(functionId==4){
+                    getTopRated();
+                }
+                else if(functionId==5){
+                    getTopRatedM();
+                }
+                else if(functionId==6){
+                    getShows();
+                }
+                else if(functionId==7){
+                    search();
+                }
+            };
+    };
 
-function changePage1(){
+
+    function changePage1(){
         page=1
         if(functionId==1){
             getTrendingmovies();
@@ -565,9 +620,8 @@ function changePage1(){
         }
         else if(functionId==7){
             search();
-        }
-    
-    }
+        };
+    };
     function changePage2(){
         page=2
         if(functionId==1){
@@ -590,9 +644,8 @@ function changePage1(){
         }
         else if(functionId==7){
             search();
-        }
-    
-    }
+        };
+    };
     function changePage3(){
         page=3
         if(functionId==1){
@@ -615,9 +668,8 @@ function changePage1(){
         }
         else if(functionId==7){
             search();
-        }
-    
-    }
+        };
+    };
     function changePage4(){
         page=4
         if(functionId==1){
@@ -640,30 +692,30 @@ function changePage1(){
         }
         else if(functionId==7){
             search();
-        }
+        };
+    };
     
-    }function changePage5(){
-    page=5
-    if(functionId==1){
+    function changePage5(){
+        page=5
+        if(functionId==1){
         getTrendingmovies();
-    }
-    else if(functionId==2){
-        getHighestGrossing();
-    }
-    else if(functionId==3){
-        getMovies();
-    }
-    else if(functionId==4){
-        getTopRated();
-    }
-    else if(functionId==5){
-        getTopRatedM();
-    }
-    else if(functionId==6){
-        getShows();
-    }
-    else if(functionId==7){
-        search();
-    }
-
-}
+        }
+        else if(functionId==2){
+            getHighestGrossing();
+        }
+        else if(functionId==3){
+            getMovies();
+        }
+        else if(functionId==4){
+            getTopRated();
+        }
+        else if(functionId==5){
+            getTopRatedM();
+        }
+        else if(functionId==6){
+            getShows();
+        }
+        else if(functionId==7){
+            search();
+        };
+    };
