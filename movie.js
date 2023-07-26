@@ -7,7 +7,7 @@
         <nav aria-label="Page">
             <ul class="pagination pagination-md justify-content-center">
                 <li class="page-item" id='pagePre'><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePagePrev()">Previous</a></li>    
-                <li class="page-item disabled" ><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage1()">1</a></li>
+                <li class="page-item" ><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage1()">1</a></li>
                 <li class="page-item"><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage2()">2</a></li>
                 <li class="page-item"><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage3()">3</a></li>
                 <li class="page-item"><a class="page-link text-warning" style="background:black;border-color:#FFC107;" href="javascript:changePage4()">4</a></li>
