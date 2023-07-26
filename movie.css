@@ -22,6 +22,9 @@ main{
 ::-webkit-scrollbar-thumb:hover {
     background: #efdb02; 
   }
+ a.dropdown-item:active{
+    background-color: grey;
+ }
 
 .form-control, .form-control:focus {
     padding: .5em;
