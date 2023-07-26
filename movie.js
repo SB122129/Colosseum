@@ -23,28 +23,26 @@
     
     window.addEventListener("DOMContentLoaded", getTrendingmovies);//event listener that executes the function that fetches trending movies automatically when the page is loaded
     
+    
+    let header=document.createElement('h4');
+    header.className="header";
+    header.style=`color:yellow;margin:2rem 0;`;
+     //this header is for showing the category of the movie content being displayed, I've also done in every function below    
+    
+    
     let trademark=document.createElement('p');
     trademark.style="text-align: center;color:black;font-size:15px;margin:1rem;font-weight:600;";
-    trademark.innerHTML=`Made by <i class="fa fa-copyright" aria-hidden="true"></i>SB122129`;//trademark footnote
-        
-    function getHighestGrossing() {
+    trademark.innerHTML=`Made by <i class="fa fa-copyright" aria-hidden="true"></i>SB122129`;//trademark footnote that gets appended into the HTML body in the getTrendingmovies() function
+
+    function fetchMovieData(url) {
         container1.innerHTML = ``;//to clear the contents of the row that holds movie content, I've done this at the beginning of every function below
         loading.innerHTML = `<div class="spinner-border text-warning text-center" role="status">
                             <span class="visually-hidden">Loading...</span>
                             </div>`;
                             //inserts the bootstrap spinner
         functionId=2;
-        
-    
-        let header=document.createElement('h4');
-            header.className="header";
-            header.innerHTML=`<i class="bi bi-cash"></i> Highest Grossing 2023`;
-            header.style=`color:yellow;margin:2rem 0;`;
-            container1.appendChild(header);
-            //this header is for showing the category of the movie content being displayed, I've also done in every function below
 
-
-        fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5f113895e79024963435d4b2ff3eb28e&primary_release_year=2023&sort_by=revenue.desc&page=${page}`)
+        fetch(url)
         .then((response) => response.json()).then((response) =>{
         arr = response;
         loading.innerHTML=``;//clears the the bootstrap spinner once the data has been fetched successfully
@@ -121,303 +119,65 @@
     }).catch((error) => {
         console.log('Error:', error);
     });//this catches an error if there is a problem fetching the data from the API
-}
-//Note from this point on all functions except the last one are the same, so refer the comments above
-    function getTrendingmovies() {
-        container1.innerHTML = ``;
-        loading.innerHTML = `<div class="spinner-border text-warning text-center" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                            </div>`;
-    functionId=1;
+}//Note from this point on all functions except the last two call fetchMovieData() and pass their respective urls
+    
+    
+    function getHighestGrossing() {
+        urls=`https://api.themoviedb.org/3/discover/movie?api_key=5f113895e79024963435d4b2ff3eb28e&primary_release_year=2023&sort_by=revenue.desc&page=${page}`
+        functionId=2;
         
-        let header=document.createElement('h4');
-        header.className="header";
-        header.innerHTML=`<i class="fa fa-line-chart" aria-hidden="true"></i> Trending today`;
-        header.style=`color:yellow;margin:2rem 0;`
+        fetchMovieData(urls);
+
+        header.innerHTML=`<i class="bi bi-cash"></i> Highest Grossing 2023`;
         container1.appendChild(header);
-        fetch(`https://api.themoviedb.org/3/trending/movie/day?api_key=5f113895e79024963435d4b2ff3eb28e&page=${page}`)
-        .then((response) => response.json()).then((response) =>{
-            arr = response;
-            loading.innerHTML=``;
-            console.log(arr);
-            
-            for (let i = 0; i < 1000; i++) {
-                
-                let card = document.createElement('div');
-                card.style = 'width: 16rem;background:black;'
-                card.setAttribute('class', 'col-lg-2 col-md-2 col-sm-2 m-2  card text-light');
-                
-                let img = document.createElement('img');
-                img.classList.add('card-img-top');
-                img.src = `https://image.tmdb.org/t/p/w500/${arr.results[i].poster_path}`;
-                img.style='height:16rem;';
-                
-                let title = document.createElement('div');
-                title.setAttribute('class', 'card-title');
-                title.style='font-size:23px';
-                title.textContent = arr.results[i].title;
-                
-                let description = document.createElement('h6');
-                description.setAttribute('class', 'card-text');
-                description.innerHTML=`<i class="bi bi-star"></i> ${arr.results[i].vote_average} &ensp; <i class="fa fa-globe" aria-hidden="true"></i>  ${arr.results[i].original_language }`;
-                description.style="font-size:13px;margin-top:.5em;"
+    }
+    
+    function getTrendingmovies() {
+        functionId=1;
+        urls=`https://api.themoviedb.org/3/trending/movie/day?api_key=5f113895e79024963435d4b2ff3eb28e&page=${page}`
 
-                
-                let detail = document.createElement('input');
-                detail.classList.add('btn');
-                detail.type='button';
-                detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin:auto; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;';
-                detail.setAttribute('data-bs-title','Overview') ;
-                detail.setAttribute('data-bs-custom-class','custom-popover');
-                detail.setAttribute('data-bs-trigger','focus');
-                detail.setAttribute('data-bs-content',`${arr.results[i].overview}`);
-                detail.setAttribute('data-bs-toggle','popover')
-                
-                let cardbody=document.createElement('div');
-                cardbody.classList.add('card-body');
-
-                let cardfooter=document.createElement('div');
-                cardbody.classList.add('card-footer');
-                
-                card.appendChild(img);
-                card.appendChild(title);
-                card.appendChild(cardbody);
-                title.appendChild(description);
-                cardfooter.appendChild(detail);
-                card.appendChild(cardfooter);
-                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-                const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-                
-                container1.append(card);
-            }
-        }).catch((error) => {
-            console.log('Error:', error);
-        });
+        fetchMovieData(urls);
+        
+        header.innerHTML=`<i class="fa fa-line-chart" aria-hidden="true"></i> Trending today`;
+        
+        container1.appendChild(header);
         document.body.appendChild(trademark);
         section.appendChild(pagination);
     }
+
     function getMovies() {
-        container1.innerHTML = ``;
-        loading.innerHTML = `<div class="spinner-border text-warning text-center" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                            </div>`;
-    
         functionId=3;
+        urls=`https://api.themoviedb.org/3/movie/popular?api_key=9fdcf0d6054b3c7f558938544704c042&page=${page}`;
 
-        let header=document.createElement('h4');
-        header.className="header";
-        header.innerHTML=`<i class="fa fa-binoculars" aria-hidden="true"></i> Discover`;
-        header.style=`color:yellow;margin:2rem 0;`;
-        container1.appendChild(header)
+        fetchMovieData(urls);
         
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=9fdcf0d6054b3c7f558938544704c042&page=${page}`)
-        .then((response) => response.json()).then((response) =>{
-            arr = response;
-            loading.innerHTML=``;
-            console.log(arr);
-            
-            for (let i = 0; i < 1000; i++) {
-                let card = document.createElement('div');
-                card.style = 'width: 16rem;background:black';
-                card.setAttribute('class', 'col-lg-2 col-md-2 col-sm-2 m-2 card text-light');
-                
-                let img = document.createElement('img');
-                img.classList.add('card-img-top');
-                img.src = `https://image.tmdb.org/t/p/w500/${arr.results[i].poster_path}`;
-                img.style='height:16rem;';
-
-                
-                let title = document.createElement('div');
-                title.setAttribute('class', 'card-title');
-                title.classList.add('text-light');
-                title.style="font-size:23px;"
-                title.textContent = arr.results[i].title;
-                
-                let description = document.createElement('h6');
-                description.setAttribute('class', 'card-text text-light');
-                description.style="font-size:13px;margin-top:.5em";
-                description.innerHTML=`<i class="bi bi-star"></i> ${arr.results[i].vote_average}&ensp;  <i class="fa fa-globe" aria-hidden="true"></i>  ${arr.results[i].original_language }`;
-                
-                let cardbody=document.createElement('div');
-                cardbody.classList.add('card-body');
-                
-                let footer=document.createElement('div');
-                footer.classList.add('card-footer');
-                
-                let detail = document.createElement('input');
-                detail.classList.add('btn');
-                detail.type='button';
-                detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin: auto; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;';
-                detail.setAttribute('data-bs-title','Overview');
-                detail.setAttribute('data-bs-custom-class','custom-popover');
-                detail.setAttribute('data-bs-trigger','focus');
-                detail.setAttribute('data-bs-content',`${arr.results[i].overview}`);
-                detail.setAttribute('data-bs-toggle','popover');
-                
-                card.appendChild(img);
-                card.appendChild(title);
-                card.appendChild(cardbody);
-                title.appendChild(description);
-                footer.appendChild(detail);
-                card.appendChild(footer);
-                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-                const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-                container1.append(card);
-            }
-        }).catch((error) => {
-            console.log('Error:', error);
-        }); 
+        header.innerHTML=`<i class="fa fa-binoculars" aria-hidden="true"></i> Discover`;
+        container1.appendChild(header)
     }
     
     function getTopRated() {
-        container1.innerHTML = ``;
-        loading.innerHTML = `<div class="spinner-border text-warning text-center" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                            </div>`;
-                            
         functionId=4;
-    
-        let header=document.createElement('h4');
-        header.className="header";
+        urls=`https://api.themoviedb.org/3/tv/top_rated?api_key=5f113895e79024963435d4b2ff3eb28e&page=${page}`;
+
+        fetchMovieData(urls);
+
         header.innerHTML=`<i class="fa fa-star" aria-hidden="true"></i> Top Rated Tv Shows`;
-        header.style=`color:yellow;margin:2rem 0;`;
         container1.appendChild(header)
-        
-        fetch(`https://api.themoviedb.org/3/tv/top_rated?api_key=5f113895e79024963435d4b2ff3eb28e&page=${page}`)
-        .then((response) => response.json()).then((response) =>{
-            arr = response;
-            loading.innerHTML=``;
-            console.log(arr);
-            
-            for (let i = 0; i < 1000; i++) {
-                let card = document.createElement('div');
-                card.style = 'width: 16rem;background:black';
-                card.setAttribute('class', 'col-lg-2 col-md-2 col-sm-2 m-2  card text-light');
-                
-                let img = document.createElement('img');
-                img.classList.add('card-img-top');
-                img.src = `https://image.tmdb.org/t/p/w500/${arr.results[i].poster_path}`;
-                img.style='height:16rem;';
-
-                
-                let title = document.createElement('h5');
-                title.setAttribute('class', 'card-title');
-                title.classList.add('text-light');
-                title.style='font-size:23px;'
-                title.textContent = arr.results[i].name;
-                console.log(arr.results[i].name)
-                
-                let description = document.createElement('h6');
-                description.setAttribute('class', 'card-text text-light');
-                description.innerHTML=`<i class="bi bi-star"></i> ${arr.results[i].vote_average} &ensp; <i class="fa fa-globe" aria-hidden="true"></i>  ${arr.results[i].original_language }`;
-                description.style="font-size:13px;margin-top:.5em;";
-                
-                let detail = document.createElement('input');
-                detail.classList.add('btn');
-                detail.type='button';
-                detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin:auto; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;';
-                detail.setAttribute('data-bs-title','Overview');
-                detail.setAttribute('data-bs-custom-class','custom-popover');
-                detail.setAttribute('data-bs-trigger','focus');
-                detail.setAttribute('data-bs-content',`${arr.results[i].overview}`);
-                detail.setAttribute('data-bs-toggle','popover');
-                
-                let cardbody=document.createElement('div');
-                cardbody.classList.add('card-body');
-
-                let footer=document.createElement('div');
-                footer.classList.add('card-footer');
-                
-                card.appendChild(img);
-                card.appendChild(title);
-                card.appendChild(cardbody);
-                title.appendChild(description);
-                footer.appendChild(detail);
-                card.appendChild(footer);
-                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-                const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
-                container1.append(card);
-            }
-        }).catch((error) => {
-            console.log('Error:', error);
-        }); 
+               
     }
     
     function getTopRatedM () {
-        container1.innerHTML = ``;
-        loading.innerHTML = `<div class="spinner-border text-warning text-center" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                            </div>`;
-        functionId=5;
-    
-        
-        let header=document.createElement('h4');
-        header.className="header";
+        functionId = 5;
+        urls = `https://api.themoviedb.org/3/movie/top_rated?api_key=5f113895e79024963435d4b2ff3eb28e&page=${page}`
+
+
+        fetchMovieData(urls);
+
         header.innerHTML=`<i class="fa fa-star" aria-hidden="true"></i> Top Rated Movies`;
-        header.style=`color:yellow;margin:2rem 0;`;
         container1.appendChild(header);
-        fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=5f113895e79024963435d4b2ff3eb28e&page=${page}`)
-        .then((response) => response.json()).then((response) =>{
-            arr = response;
-            loading.innerHTML=``;   
-            console.log(arr);
-            
-            for (let i = 0; i < 1000; i++) {
-                let card = document.createElement('div');
-                card.style = 'width: 16rem;background:black';
-                card.setAttribute('class', 'col-lg-2 col-md-2 col-sm-2 m-2  card  text-light');
-                let img = document.createElement('img');
-                img.classList.add('card-img-top');
-                img.src = `https://image.tmdb.org/t/p/w500/${arr.results[i].poster_path}`;
-                img.style='height:16rem;';
-
-                
-                let title = document.createElement('div');
-                title.setAttribute('class', 'card-title');
-                title.classList.add('text-light');
-                title.style='font-size:23px;'
-                title.textContent = arr.results[i].title;
-                
-                let description = document.createElement('h6');
-                description.setAttribute('class', 'card-text text-light');
-                description.innerHTML=`<i class="bi bi-star"></i> ${arr.results[i].vote_average} &ensp; <i class="fa fa-globe" aria-hidden="true"></i>  ${arr.results[i].original_language }`;
-                description.style="font-size:13px;.5em;";
-                
-                let detail = document.createElement('input');
-                detail.classList.add('btn');
-                detail.type='button';
-                detail.value='More';
-                detail.style='width:5rem;background:#FFC107;margin: auto; border: 0; font-size: 11px; font-weight: 600; line-height: 2.5;  outline: transparent; padding: 0 1rem; text-align: center;color:black;border-radius:7px;';
-                detail.setAttribute('data-bs-title','Overview') ;
-                detail.setAttribute('data-bs-custom-class','custom-popover');
-                detail.setAttribute('data-bs-trigger','focus');
-                detail.setAttribute('data-bs-content',`${arr.results[i].overview}`);
-                detail.setAttribute('data-bs-toggle','popover');
-                
-                let cardbody=document.createElement('div');
-                cardbody.classList.add('card-body');
-
-                let footer=document.createElement('div');
-                footer.classList.add('card-footer');
-                
-                card.appendChild(img);
-                card.appendChild(title);
-                card.appendChild(cardbody);
-                cardbody.appendChild(description);
-                footer.appendChild(detail);
-                card.appendChild(footer);
-                const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-                const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-                
-                container1.append(card)
-            }
-        }).catch((error) => {
-            console.log('Error:', error);
-        });
+               
     }
+
     function getShows() {//only difference in this function is it uses TV-Maze API and object names used to access the contents of it's response vary accordingly
         container1.innerHTML = ``;
         loading.innerHTML = `<div class="spinner-border text-warning text-center" role="status">
@@ -425,10 +185,7 @@
                             </div>`;
         functionId=6;
     
-        let header=document.createElement('h4');
-        header.className="header";
         header.innerHTML=`<i class="bi bi-tv"></i> Popular Tv Shows`;
-        header.style=`color:yellow;margin:2rem 0;`;
         container1.appendChild(header);
         
         fetch(`https://api.tvmaze.com/shows?page=${page}`)
@@ -499,9 +256,7 @@
                             </div>`;
     
         functionId=7;
-        let header=document.createElement('h5');
-        header.className="header";
-        header.style=`color:yellow;margin:2rem 0;`;
+        
         container1.appendChild(header);
         
         const searchTerm = document.querySelector('#search').value;//an object that holds the value of the text  in the search input 
